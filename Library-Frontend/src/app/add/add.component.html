@@ -1,0 +1,25 @@
+<div class="cont">
+ <app-header></app-header>
+
+<div class="card-body contact">
+<div class="col-md-6">
+ <img class="img" style="width:50% ;" src="assets/email.png">
+</div>
+<div class="card col-md-4">
+ <div class="card-body sub">
+<h3 class="pt-3">CONTACT ME</h3>
+<input type="text" placeholder="Full Name" minlength="3" required>
+<input type="email" placeholder="Email" required>
+<select name="subject" id="subject" (change)="update($event)" >
+ <option *ngFor="let subject of subjects" [value]="subject">{{subject}}</option>
+</select>
+<textarea name="text-area" id="textarea" cols="30" rows="5" placeholder="Message"></textarea>
+<button type="button" class="btn btn-outline-dark submit-button pb-2">
+ Send
+</button>
+ </div>
+</div>
+</div>
+</div>
+
+

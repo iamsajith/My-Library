@@ -34,7 +34,7 @@ app-header{
 	height: 100%;
 	transform-style: preserve-3d;
 	border: 1px black;
-	padding: 5%;
+	/* padding: 5%; */
 }
 
 .box .body .imgContainer img {
@@ -43,7 +43,8 @@ app-header{
 	left: 0;
 	width: 100%;
 	height: 100%;
-	object-fit: contain
+	object-fit:cover;
+	border-radius: 5%;
 }
 
 .box .body .content {
@@ -75,15 +76,6 @@ h3{
 	font-family: "Montserrat";
 }
 
-section {
-	background-color: #F3E6E8;
-}
-.stack{
-	background-color: #121212;
-	color: white;
-	font-size:xx-small;
-	
-}
 .back{
 	display: flex;
 	flex-direction: column;

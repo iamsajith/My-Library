@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const credentials = require("./credentials");
-const bookData = require ("./book")
+const bookData = require("./book");
 const jwt = require("jsonwebtoken");
 
 const app = new express();
@@ -13,8 +13,7 @@ app.use(express.json({ urlencoded: true }));
 app.get("/", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
-  credentials.find().then((user) => {
-  });
+  credentials.find().then((user) => {});
   res.send(user);
 });
 
@@ -40,17 +39,29 @@ app.post("/login", (req, res) => {
     .then((user) => {
       let payload = { subject: user.email + user.password };
       let token = jwt.sign(payload, "secretKey");
-      res.status(200).send({token});
+      res.status(200).send({ token });
     });
 });
 
 // Book Database CRUD Operations
-app.get('/books',(req,res)=>{
-bookData.find({}).then((data)=>{
-  res.send(data)
+app.get("/book", (req, res) => {
+  bookData.find({}, { _id: 0 }).then((data) => {
+    res.send(data);
+  });
+});
+app.post("/add", (req, res) => {
+  var bookInfo = {
+    author: req.body.author,
+    bookname: req.body.bookname,
+    imgUrl: req.body.imgUrl,
+    synopsis: req.body.synopsis,
+  };
+  console.log(bookInfo);
+  var bookdb = new bookData(bookInfo);
+  bookdb.save();
 
-})
-})
+  res.send();
+});
 
 app.listen(5000, () => {
   console.log("Running on 5000");

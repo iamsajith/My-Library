@@ -9,7 +9,7 @@ var CredentialSchema = new schema({
  regid : Number,
  password : String,
 },{
- versionKey: false // You should be aware of the outcome after set to false
+ versionKey: false
 })
 
 var credentialData = mongoose.model('credentials',CredentialSchema)

@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  userCred=new AuthModel('','',0,'')
-
+  userCred = new AuthModel('','',0,'')
+ 
   constructor(private _auth:AuthService,private _route:Router) { }
 
   ngOnInit(): void {

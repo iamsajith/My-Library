@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
 import { HeaderComponent } from './header/header.component';
 import { AddComponent } from './add/add.component';
+import { BookService } from './book.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { AddComponent } from './add/add.component';
     CommonModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

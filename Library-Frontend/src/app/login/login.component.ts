@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
   constructor(private _auth:AuthService,private _router:Router) { }
 
   ngOnInit(): void {
+    if(this._auth.loggedIn()){
+      this._router.navigate(['/'])
+    }
   }
   Verify=()=>{
   this._auth.login(this.User).subscribe((data)=>{

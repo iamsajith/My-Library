@@ -11,8 +11,8 @@
          <p class="text-center">Author : {{book.author}}</p>
          <p style="text-align:justify;font-size: smaller;">{{book.synopsis}}</p>
          <div class="d-flex align-items-center justify-content-around">
-          <button class="btn btn-dark btn-sm mx-2">🗑 DELETE</button>
-          <button class="btn btn-dark btn-sm mx-2">✎ UPDATE</button>
+          <button class="btn btn-dark btn-sm mx-2" (click)="delete(book._id)">🗑 DELETE</button>
+          <button class="btn btn-dark btn-sm mx-2" (click)="update(book._id)">✎ UPDATE</button>
          </div>
        </div>
       </div>

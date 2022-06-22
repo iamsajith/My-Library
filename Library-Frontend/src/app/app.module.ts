@@ -15,6 +15,7 @@ import { BooksComponent } from './books/books.component';
 import { HeaderComponent } from './header/header.component';
 import { AddComponent } from './add/add.component';
 import { BookService } from './book.service';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BookService } from './book.service';
     HomeComponent,
     BooksComponent,
     HeaderComponent,
-    AddComponent
+    AddComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

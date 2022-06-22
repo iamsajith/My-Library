@@ -6,9 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
+  // server_address:string = 'api';
+
   constructor(public http:HttpClient) { }
   login(authData:any){
-    return this.http.post<any>("http://localhost:5000/login",authData)
+    return this.http.post<any>(`http://localhost:8080/login`,authData)
   
     }
     loggedIn(){
@@ -21,6 +23,6 @@ export class AuthService {
     }
   saveCred(userData:any){
     console.log(userData.email)
-    return this.http.post("http://localhost:5000/signup",userData).subscribe()
+    return this.http.post(`http://localhost:8080/signup`,userData).subscribe()
     }
   }

@@ -13,13 +13,13 @@ export class AddComponent implements OnInit {
   Book:any = new BookModel("","","","")
 
 
-  constructor(public _book:BookService, private _route:Router) { }
+  constructor(public book:BookService, private _route:Router) { }
   
 
   ngOnInit(): void {
   }
   submitBook(){
-    this._book.postBook(this.Book)
+    this.book.postBook(this.Book)
     this._route.navigate(['/'])
   }
 

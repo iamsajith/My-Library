@@ -4,16 +4,19 @@ const credentials = require("./credentials");
 const bookData = require("./book");
 const jwt = require("jsonwebtoken");
 const path = require('path');
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 5000
 
 const app = new express();
 app.use(cors());
 app.use(express.json({ urlencoded: true }));
 
+app.use(express.static('./dist/library-frontend'));
+
+
 
 // Authentication&Authorization Part
 
-app.post("/signup", (req, res) => {
+app.post("/api/signup", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   var userCred = {
@@ -27,7 +30,7 @@ app.post("/signup", (req, res) => {
   res.send();
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   credentials
@@ -49,19 +52,19 @@ app.post("/login", (req, res) => {
       res.status(401).send('Wrong Credentials')
     }
   });
-
 });
 
 // Book Database CRUD Operations
 
 
-app.get("/book", (req, res) => {
+app.get("/api/book", (req, res) => {
   bookData.find().then((data) => {
+    console.log("All Books",data)
     res.send(data);
   });
 });
 
-app.post("/add", (req, res) => {
+app.post("/api/add", (req, res) => {
 
   var bookInfo = {
     author: req.body.author,
@@ -76,13 +79,13 @@ app.post("/add", (req, res) => {
   
   }
   )
-  app.get('/edit/:id',(req,res)=>{
+  app.get('/api/edit/:id',(req,res)=>{
     bookData.findById(req.params.id).then((data)=>{
       res.send(data)
     })
   })
 
-app.put("/update", (req, res) => {
+app.put("/api/update", (req, res) => {
   bookData.findByIdAndUpdate(
     req.body._id,
     {
@@ -104,7 +107,7 @@ app.put("/update", (req, res) => {
   );
 });
 
-app.delete('/book/remove/:id',(req,res)=>{
+app.delete('/api/book/remove/:id',(req,res)=>{
 bookData.findByIdAndDelete(req.params.id)
 .then(()=>{
       console.log('success')
@@ -112,7 +115,8 @@ bookData.findByIdAndDelete(req.params.id)
   })
 })
 
-
+app.get('/*', (req, res)=> {
+  res.sendFile(path.join(__dirname + './dist/library-frontend/index.html'))})
 
 app.listen(PORT, () => {
   console.log(`Running on ${PORT}`);
